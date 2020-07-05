@@ -22,11 +22,13 @@ class Inkrementalne (
 
     @PrimaryKey(autoGenerate = true) val id : Int,
 
+    @ColumnInfo(name = "naziv") val naziv : String,
+
     @ColumnInfo(name = "broj") val broj : Int,
 
-    @ColumnInfo(name = "id_mjerna_jedinica") val id_mjerna_jedinica : Int,
+    @ColumnInfo(name = "id_mjerna_jedinica", index = true) val id_mjerna_jedinica : Int,
 
-    @ColumnInfo(name = "id_kategorije") val id_kategorije : Int,
+    @ColumnInfo(name = "id_kategorije", index = true) val id_kategorije : Int,
 
     //za koliko se povacaje
     @ColumnInfo(name = "inkrement") val inkrement : Int

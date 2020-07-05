@@ -10,14 +10,14 @@ import androidx.room.PrimaryKey
         foreignKeys = arrayOf(
             ForeignKey(entity = Kategorije::class,
                 parentColumns = arrayOf("id"),
-                childColumns = arrayOf("id_kategorija"),
+                childColumns = arrayOf("id_kategorije"),
                 onDelete = CASCADE)))
-class Osobine (
+class  Osobine (
 
     @PrimaryKey(autoGenerate = true) val id : Int,
 
     @ColumnInfo(name = "opis") val opis : String,
 
-    @ColumnInfo(name = "id_kategorija") val id_kategorija : Int
+    @ColumnInfo(name = "id_kategorije", index = true) val id_kategorije : Int
 
 )

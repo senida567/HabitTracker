@@ -1,5 +1,6 @@
 package com.example.projekat.entity
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -17,10 +18,14 @@ import java.sql.Time
 class Vremenske (
 
     @PrimaryKey(autoGenerate = true) val id : Int,
+
+    @ColumnInfo(name = "naziv") val naziv : String,
+
             //mozda neki drugi tip?
-    @ColumnInfo(name = "pocetak") val pocetak : Time,
+    @ColumnInfo(name = "pocetak") val pocetak : String,
 
-    @ColumnInfo(name = "kraj") val kraj : Time,
+    @Nullable
+    @ColumnInfo(name = "kraj") val kraj : String,
 
-    @ColumnInfo(name = "id_kategorije") val id_kategorije : Int
+    @ColumnInfo(name = "id_kategorije", index = true) val id_kategorije : Int
 )

@@ -11,20 +11,24 @@ import androidx.room.PrimaryKey
         ForeignKey(entity = MjerneJedinice::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("id_mjerna_jedinica"),
-            onDelete = CASCADE),
+            onDelete = ForeignKey.CASCADE
+        ),
         ForeignKey(entity = Kategorije::class,
             parentColumns = arrayOf("id"),
             childColumns = arrayOf("id_kategorije"),
-            onDelete = CASCADE)
+            onDelete = ForeignKey.CASCADE
+        )
     ))
 
 class Kolicinske(
 
     @PrimaryKey(autoGenerate = true) val id : Int,
 
+    @ColumnInfo(name = "naziv") val naziv : String,
+
     @ColumnInfo(name = "kolicina") val kolicina : Int,
 
-    @ColumnInfo(name = "id_mjerna_jedinica") val id_mjerna_jedinica : Int,
+    @ColumnInfo(name = "id_mjerna_jedinica", index = true) val id_mjerna_jedinica : Int,
 
-    @ColumnInfo(name = "id_kategorije") val id_kategorije : Int
+    @ColumnInfo(name = "id_kategorije", index = true) val id_kategorije : Int
 )

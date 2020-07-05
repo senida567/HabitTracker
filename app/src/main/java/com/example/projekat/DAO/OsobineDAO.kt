@@ -14,7 +14,7 @@ interface OsobineDAO {
     fun getAll() : List<Osobine>
 
     //osobine koje pripadaju kategoriji sa id-om id_K
-    @Query("SELECT opis FROM osobine WHERE id_kategorija = :id_K")
+    @Query("SELECT opis FROM osobine WHERE id_kategorije = :id_K")
     fun getOsobineKategorije(id_K: Int) : List<String>
 
     @Query("DELETE FROM osobine")

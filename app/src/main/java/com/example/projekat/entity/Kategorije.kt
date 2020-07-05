@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "kategorije")
 class Kategorije (
 
-    @PrimaryKey(autoGenerate = true) val id : Int,
+    @PrimaryKey(autoGenerate = true) val id : Int = 0,
 
     @ColumnInfo(name = "naziv") val naziv : String,
 
@@ -17,4 +17,5 @@ class Kategorije (
     @ColumnInfo(name = "tip") val tip : Int,
 
     @ColumnInfo(name = "osobina") val osobina : Boolean
+
 )

@@ -7,7 +7,7 @@ import com.example.projekat.entity.Kategorije
 interface KategorijeDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(kategorije: Kategorije)
+    fun insert(kategorije: Kategorije) //suspend
 
     @Query("SELECT * FROM kategorije")
     fun getAll() : List<Kategorije>

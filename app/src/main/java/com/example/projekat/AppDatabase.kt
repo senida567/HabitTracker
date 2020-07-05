@@ -1,6 +1,7 @@
 package com.example.projekat
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -39,7 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun getVremenskeDao(): VremenskeDAO?
 
 
-    open fun buildDatabaseInstance(context: Context): AppDatabase? {
+    open fun buildDatabaseInstance(context: Context): AppDatabase {
         return Room.databaseBuilder(
             context, AppDatabase::class.java,
             java.lang.String.valueOf(R.string.db_name)
@@ -64,7 +65,7 @@ abstract class AppDatabase : RoomDatabase() {
         return appDatabase
     }
 
-    open fun setAllServices(): AppDatabase? {
+    open fun setAllServices(): AppDatabase {
 
         appDatabase!!.setInkrementalneService(InkrementalneService(appDatabase!!.getInkrementalneDao()))
         appDatabase!!.setKategorijeService(KategorijeService(appDatabase!!.getKategorijeDao()))
@@ -72,13 +73,10 @@ abstract class AppDatabase : RoomDatabase() {
         appDatabase!!.setMjerneJediniceService(MjerneJediniceService(appDatabase!!.getMjerneJediniceDao()))
         appDatabase!!.setOsobineService(OsobineService(appDatabase!!.getOsobineDao()))
         appDatabase!!.setVremenskeService(VremenskeService(appDatabase!!.getVremenskeDao()))
-        return appDatabase
+        return appDatabase as AppDatabase
     }
 
-    open fun getInsanceByContextAndService(
-        context: Context,
-        serviceName: String
-    ): AppDatabase? {
+    open fun getInstanceByContextAndService(context: Context, serviceName: String): AppDatabase {
         if (appDatabase == null) {
             appDatabase = buildDatabaseInstance(context)
         }
@@ -87,7 +85,7 @@ abstract class AppDatabase : RoomDatabase() {
         } else {
             setService(serviceName)
         }
-        return appDatabase
+        return appDatabase as AppDatabase
     }
 
 
@@ -123,4 +121,6 @@ abstract class AppDatabase : RoomDatabase() {
     open fun setVremenskeService(vremenskeService: VremenskeService) {
         this.vremenskeService = vremenskeService
     }
+
+    open fun getKategorijeService(): KategorijeService? { return kategorijeService }
 }

@@ -13,7 +13,7 @@ interface VremenskeDAO {
     @Query("SELECT * FROM vremenske")
     fun getAll() : List<Vremenske>
 
-    @Query("SELECT pocetak, kraj FROM vremenske WHERE id_kategorije = :id_K")
+    @Query("SELECT * FROM vremenske WHERE id_kategorije = :id_K")
     fun getVremenskeKategorije(id_K: Int) : List<Vremenske> //mozda tip liste nije uredu??
 
     @Query("DELETE FROM vremenske")

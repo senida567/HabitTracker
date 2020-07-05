@@ -18,7 +18,6 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>) : RecyclerView.Adapte
         viewType: Int
     ): KategorijeViewHolder {
         val view: View =
-            //nema još layouta
             LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return KategorijeViewHolder(view)
     }
@@ -28,7 +27,6 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>) : RecyclerView.Adapte
         holder.naziv.setText(kategorije.naziv)
         holder.osobina.setText(kategorije.osobina.toString()) //zasad je osobina boolean
         //i sve što korisnik treba vidjeti iz tebele kategorije
-        //holderi u layoutu su crveni
     }
 
     override fun getItemCount(): Int {

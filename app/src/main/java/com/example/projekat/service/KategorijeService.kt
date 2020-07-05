@@ -9,12 +9,12 @@ class KategorijeService {
 
     constructor(kategorijeDAO: KategorijeDAO?) { this.kategorijeDAO = kategorijeDAO }
 
-    fun getAll(): List<Kategorije?>? { return kategorijeDAO?.getAll() }
-    private suspend fun saveKategorija(kategorije: Kategorije) { kategorijeDAO?.insert(kategorije) }
+    fun getAll(): List<Kategorije>? { return kategorijeDAO?.getAll() }
+    fun saveKategorija(kategorije: Kategorije) { kategorijeDAO?.insert(kategorije) }
 
     private fun updateKategorije(kategorije: Kategorije) { kategorijeDAO?.update(kategorije) }
 
-    suspend fun saveOrUpdate(kategorije: Kategorije) {
+    fun saveOrUpdate(kategorije: Kategorije) {
         try {
             saveKategorija(kategorije)
         } catch (e: Exception) {
