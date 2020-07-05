@@ -11,4 +11,15 @@
     <string name="vremenske_service">VremenskeService</string>
 
     <string name="all_services">allServices</string>
+
+    <string name="menu_pocetna">Početna stranica</string>
+    <string name="menu_postignuca">Postignuća</string>
+    <string name="menu_napomene">Napomene</string>
+    <string name="menu_postavke">Postavke</string>
+    <string name="menu_podijeli">Podijeli</string>
+    <string name="menu_kategorije">Kategorije</string>
+    <string name="menu_profil">Profil</string>
+
+    <string name="otvori">open</string>
+    <string name="zatvori">close</string>
 </resources>
