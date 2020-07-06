@@ -2,6 +2,7 @@ package com.example.projekat.activity
 
 import android.app.ListActivity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -52,7 +53,6 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
         drawer = findViewById(R.id.drawer_layout)
         bottomNavView = findViewById(R.id.bottom_menu);
         bottomNavView.setOnNavigationItemSelectedListener(myListener);
-
 
         // ActionBarDrawerToggle prikazuje hamburger ikonu u toolbar-u
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.otvori, R.string.zatvori)
