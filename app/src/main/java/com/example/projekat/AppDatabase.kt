@@ -122,5 +122,19 @@ abstract class AppDatabase : RoomDatabase() {
         this.vremenskeService = vremenskeService
     }
 
-    open fun getKategorijeService(): KategorijeService? { return kategorijeService }
+    open fun getKategorijeService(): KategorijeService? {
+        return kategorijeService
+    }
+
+    open fun getInkrementalneService(): InkrementalneService? {
+        return inkrementalneService
+    }
+
+    open fun getKolicinskeService(): KolicinskeService? {
+        return kolicinskeService
+    }
+
+    open fun getVremenskeService(): VremenskeService? {
+        return vremenskeService
+    }
 }

@@ -42,6 +42,10 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private lateinit var recyclerView: RecyclerView
     private var adapter: KategorijeAdapter? = null
 
+    companion object {
+        var appDatabase: AppDatabase? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -180,8 +184,4 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     override fun onPointerCaptureChanged(hasCapture: Boolean) {}
-
-    companion object {
-        var appDatabase: AppDatabase? = null
-    }
 }

@@ -22,4 +22,11 @@
 
     <string name="otvori">open</string>
     <string name="zatvori">close</string>
+
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="dodaj">Dodaj</string>
+    <string name="ukloni">x</string>
+    <string name="start">Početak</string>
+    <string name="stop">Zaustavi</string>
 </resources>
