@@ -18,14 +18,18 @@ import com.example.projekat.R
 import com.example.projekat.adapter.KategorijeAdapter
 import com.example.projekat.entity.Kategorije
 import com.example.projekat.ui.achievements.PostignucaFragment
+import com.example.projekat.ui.categories.DodajKategorijuFragment
 import com.example.projekat.ui.categories.KategorijeFragment
 import com.example.projekat.ui.home.PocetnaFragment
 import com.example.projekat.ui.notes.NapomeneFragment
 import com.example.projekat.ui.profile.ProfilFragment
 import com.example.projekat.ui.settings.PostavkeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.kategorije_fragment.*
+import kotlinx.android.synthetic.main.pocetna_fragment.*
 
 
 class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,8 +38,7 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private lateinit var bottomNavView: BottomNavigationView
 
     private lateinit var kategorijeList: List<Kategorije>
-    private lateinit var recyclerView: RecyclerView
-    private var adapter: KategorijeAdapter? = null
+    private lateinit var btn : FloatingActionButton
 
     companion object {
         var appDatabase: AppDatabase? = null
@@ -63,6 +66,12 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         loadFragment(PocetnaFragment());
         navigation_view.setNavigationItemSelectedListener(this)
+
+        btn = findViewById(R.id.floatingActionButton)
+        btn.setOnClickListener {
+            floatingActionButtonClicked()
+        }
+
     }
 
     private fun loadFragment(fragment : Fragment){
@@ -154,9 +163,6 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
             false
         }
 
-    fun openDodajKategorijuAktivnost(view: View) {
-        startActivity(Intent(view.context, DodajKategorijuAktivnost::class.java))
-    }
 
     private fun setMyDatabase(serviceName: String) {
         appDatabase = Room.databaseBuilder(
@@ -179,5 +185,15 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     override fun onPointerCaptureChanged(hasCapture: Boolean) {}
+
+    open fun floatingActionButtonClicked() {
+        if(bottomNavView.selectedItemId == R.id.bottom_kategorije)  {
+            loadFragment(DodajKategorijuFragment())
+        }else if(bottomNavView.selectedItemId == R.id.bottom_profil)  {
+            //TO_DO:
+        }else if(bottomNavView.selectedItemId == R.id.bottom_pocetna) {
+            //TO_DO
+        }
+    }
 
 }
