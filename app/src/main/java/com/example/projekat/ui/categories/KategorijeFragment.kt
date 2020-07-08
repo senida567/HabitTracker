@@ -1,6 +1,5 @@
 package com.example.projekat.ui.categories
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,14 +9,13 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projekat.R
-import com.example.projekat.activity.DodajKategorijuAktivnost
 import com.example.projekat.activity.GlavnaAktivnost
 import com.example.projekat.adapter.KategorijeAdapter
 import com.example.projekat.entity.Kategorije
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.kategorije_fragment.*
 
-class KategorijeFragment : Fragment()  {
+class KategorijeFragment : Fragment() {
 
     private lateinit var kategorijeList : List<Kategorije>
     private lateinit var btn : FloatingActionButton
@@ -47,21 +45,11 @@ class KategorijeFragment : Fragment()  {
             adapter = KategorijeAdapter(kategorijeList)
         }
 
-        btn = view.findViewById(R.id.floatingActionButton_kategorije)
 
-        btn.setOnClickListener {
-            Log.d("NESTO", "NESTO")
-            openDodajKategoriju()
-        }
-
-    }
-
-    open fun openDodajKategoriju() {
-        val intent = Intent(this.context, DodajKategorijuFragment::class.java)
-        startActivity(intent)
     }
 
     companion object {
         fun newInstance(): KategorijeFragment = KategorijeFragment()
     }
+
 }

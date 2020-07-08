@@ -25,7 +25,7 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: KategorijeViewHolder, position: Int) {
         val kategorije : Kategorije = kategorijeLista.get(position)
         holder.naziv.setText(kategorije.naziv)
-        holder.osobina.setText(kategorije.osobina.toString()) //zasad je osobina boolean
+        //holder.osobina.setText(kategorije.osobina.toString()) //zasad je osobina boolean
         //i sve što korisnik treba vidjeti iz tebele kategorije
     }
 
@@ -36,11 +36,11 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>) : RecyclerView.Adapte
     inner class KategorijeViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var naziv : TextView
-        var osobina: TextView
+        //var osobina: TextView
 
         init {
             naziv = itemView.findViewById(R.id.naziv)
-            osobina = itemView.findViewById(R.id.osobina)
+            //osobina = itemView.findViewById(R.id.osobina)
         }
     }
 
