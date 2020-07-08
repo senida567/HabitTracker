@@ -7,11 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true">
 
-    <include
-        layout="@layout/app_bar_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -34,6 +29,11 @@
             </androidx.appcompat.widget.Toolbar>
 
         </LinearLayout>
+
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <!-- Navigation Drawer -->
         <com.google.android.material.navigation.NavigationView

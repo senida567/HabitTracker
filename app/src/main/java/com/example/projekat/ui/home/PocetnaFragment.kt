@@ -2,11 +2,16 @@ package com.example.projekat.ui.home
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -21,7 +26,7 @@ import com.example.projekat.entity.Kolicinske
 import com.example.projekat.entity.Vremenske
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class PocetnaFragment : Fragment() {
+class PocetnaFragment : Fragment(), View.OnClickListener {
 
     lateinit private var inkrementalneList : List<Inkrementalne>
     lateinit private var kolicinskeList : List<Kolicinske>
@@ -37,6 +42,16 @@ class PocetnaFragment : Fragment() {
     lateinit var dugmePlus : Button
     lateinit var dugmeMinus : Button
     lateinit var dugmeUkloni : Button
+/*
+    var akt = arrayOf(
+        "akt1", "akt2", "akt3",
+        "akt4", "akt5", "akt6", "akt7"
+    )
+*/
+    lateinit var adapter: ArrayAdapter<String>
+    lateinit var listView: ListView
+    lateinit var alertDialog: AlertDialog.Builder
+    lateinit var dialog: AlertDialog
 
     companion object {
         fun newInstance() = PocetnaFragment()
@@ -50,11 +65,11 @@ class PocetnaFragment : Fragment() {
     ): View? {
         val view : View = inflater.inflate(R.layout.pocetna_fragment, container, false)
 
+        fabPocetna = view.findViewById(R.id.fabPocetna)
 /*        dugmePlus = view.findViewById(R.id.plus_btn)
         dugmeMinus = view.findViewById(R.id.minus_btn)
         dugmeUnos = view.findViewById(R.id.unos_btn)
         dugmeUkloni = view.findViewById(R.id.ukloni_aktivnost)
-        fabPocetna = view.findViewById(R.id.fabPocetna)
 
         dugmePlus.setOnClickListener {
             povecajInkrement(view)
@@ -70,11 +85,12 @@ class PocetnaFragment : Fragment() {
 
         dugmeUkloni.setOnClickListener {
             ukloniAktivnost(view)
-        }
+        }*/
 
         fabPocetna.setOnClickListener {
+            Log.d("TAG", "FAB")
             dodajAktivnost(view)
-        }*/
+        }
 
         return view
     }
@@ -102,6 +118,49 @@ class PocetnaFragment : Fragment() {
     private fun dodajAktivnost(view : View) {
         /* todo: korisniku se prikaze lista vec postojecih aktivnosti u bazi
         *   aktivnost koju odabere se dodaje na pocetnu stranicu */
+  /*      alertDialog = context?.let { AlertDialog.Builder(it) }!!
+        val rowList: View = layoutInflater.inflate(R.layout.dodaj_aktivnost_element, null)
+        listView = rowList.findViewById(R.id.aktivnost_element)
+        adapter = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, akt) }!!
+        listView.adapter = adapter
+        adapter.notifyDataSetChanged()
+        alertDialog.setView(rowList)
+        dialog = alertDialog.create()
+        dialog.show()*/
+        val builder = context?.let { AlertDialog.Builder(it) }
+        if (builder != null) {
+            builder.setTitle("Odaberite aktivnost")
+        }
+
+        // dodajemo checkbox listu
+        val aktivnosti = arrayOf("akt1", "akt2", "akt3", "akt4", "akt5")
+        val checkedItems = booleanArrayOf(true, false, false, true, false)
+        if (builder != null) {
+            builder.setMultiChoiceItems(aktivnosti, checkedItems) { dialog, which, isChecked ->
+                // user checked or unchecked a box
+            }
+        }
+
+        // add OK and Cancel buttons
+        if (builder != null) {
+            builder.setPositiveButton("OK") { dialog, which ->
+                // user clicked OK
+            }
+        }
+        if (builder != null) {
+            builder.setNegativeButton("Cancel", null)
+        }
+
+// create and show the alert dialog
+        val dialog = builder?.create()
+        if (dialog != null) {
+            dialog.show()
+        }
+    }
+
+    fun closeDialog(view: View) {
+        dialog.dismiss()
+        Toast.makeText(context, "Dialog Closed", Toast.LENGTH_SHORT).show()
     }
 
     private fun ukloniAktivnost(view : View) {
@@ -132,13 +191,17 @@ class PocetnaFragment : Fragment() {
         kolicinskeList = appDatabase!!.getKolicinskeService()?.getAll() as List<Kolicinske>
         vremenskeList = appDatabase!!.getInkrementalneService()?.getAll() as List<Vremenske>
 
-        recyclerView = getView()?.findViewById(R.id.recyclerViewPocetna)!!
+       // recyclerView = getView()?.findViewById(R.id.recyclerViewPocetna)!!
 
         inkrementalneAdapter = InkrementalneAdapter(inkrementalneList)
         // todo: uraditi i za vremenske i kolicinske aktivnosti
 
-        recyclerView.adapter = inkrementalneAdapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        //recyclerView.adapter = inkrementalneAdapter
+        //recyclerView.layoutManager = LinearLayoutManager(context)
+    }
+
+    override fun onClick(v: View?) {
+        print("nestooo")
     }
 
 }

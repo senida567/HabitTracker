@@ -19,8 +19,15 @@
         android:id="@+id/fabPocetna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom|end"
         android:clickable="true"
-        android:src="@drawable/ic_add_black" />
+        android:src="@drawable/ic_add_black"
+        android:focusable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
