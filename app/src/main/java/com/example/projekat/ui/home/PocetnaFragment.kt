@@ -47,10 +47,10 @@ class PocetnaFragment : Fragment(), View.OnClickListener {
         "akt1", "akt2", "akt3",
         "akt4", "akt5", "akt6", "akt7"
     )
-*/
+
     lateinit var adapter: ArrayAdapter<String>
     lateinit var listView: ListView
-    lateinit var alertDialog: AlertDialog.Builder
+    lateinit var alertDialog: AlertDialog.Builder*/
     lateinit var dialog: AlertDialog
 
     companion object {
@@ -88,7 +88,6 @@ class PocetnaFragment : Fragment(), View.OnClickListener {
         }*/
 
         fabPocetna.setOnClickListener {
-            Log.d("TAG", "FAB")
             dodajAktivnost(view)
         }
 
