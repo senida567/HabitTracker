@@ -8,7 +8,7 @@ import com.example.projekat.entity.Kolicinske
 interface KolicinskeDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(kolicinske: Kolicinske)
+    fun insert(kolicinske: Kolicinske)
 
     @Query("SELECT * FROM kolicinske")
     fun getAll() : List<Kolicinske>

@@ -1,8 +1,6 @@
 package com.example.projekat.activity
 
-import android.app.ListActivity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -12,9 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.projekat.AppDatabase
@@ -27,11 +23,10 @@ import com.example.projekat.ui.home.PocetnaFragment
 import com.example.projekat.ui.notes.NapomeneFragment
 import com.example.projekat.ui.profile.ProfilFragment
 import com.example.projekat.ui.settings.PostavkeFragment
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.random.Random.Default.Companion
+
 
 class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,7 +47,7 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar)) // postavljanje toolbara
         setMyDatabase(java.lang.String.valueOf(R.string.kategorije_service))
-        //setUpMyRecyclerView()
+        setUpMyDatabaseContext()
 
         drawer = findViewById(R.id.drawer_layout)
         bottomNavView = findViewById(R.id.bottom_menu);
@@ -168,20 +163,21 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
             this, AppDatabase::class.java,
             java.lang.String.valueOf(R.string.db_name)
         ).allowMainThreadQueries().build()
+
+        Log.d("DONE", "BAZA")
         appDatabase = appDatabase?.getInstanceByContextAndService(this, serviceName)
     }
 
-    private fun setUpMyRecyclerView() {
-        val kategorija = Kategorije(1, "Dnevna aktivnost", 2, true)
-        val kategorija2 = Kategorije(2, "Školske aktivnosti", 1, true)
-        appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija)
-        appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija2)
+    private fun setUpMyDatabaseContext() {
+        if(appDatabase?.getKategorijeService() == null) {
+            val kategorija = Kategorije(1, "Dnevna aktivnost",0,true)
+            val kategorija2 = Kategorije(2, "Školske aktivnosti", 0,true)
+            appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija)
+            appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija2)
+        }
         kategorijeList = appDatabase?.getKategorijeService()?.getAll()!!
-        recyclerView = findViewById(R.id.recyclerView)
-        adapter = KategorijeAdapter(kategorijeList)
-        recyclerView.setAdapter(adapter)
-        recyclerView.setLayoutManager(LinearLayoutManager(this))
     }
 
     override fun onPointerCaptureChanged(hasCapture: Boolean) {}
+
 }

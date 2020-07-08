@@ -8,7 +8,7 @@ import com.example.projekat.entity.Kategorije
 interface InkrementalneDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(inkrementalne: Inkrementalne)
+    fun insert(inkrementalne: Inkrementalne)
 
     @Query("SELECT * FROM inkrementalne")
     fun getAll() : List<Inkrementalne>

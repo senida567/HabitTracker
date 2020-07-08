@@ -11,9 +11,6 @@ class Kategorije (
 
     @ColumnInfo(name = "naziv") val naziv : String,
 
-    //1=vremenske;
-    //2=inkrementalne;
-    //3=kolicinske
     @ColumnInfo(name = "tip") val tip : Int,
 
     @ColumnInfo(name = "osobina") val osobina : Boolean

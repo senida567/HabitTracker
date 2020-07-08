@@ -8,7 +8,7 @@ import com.example.projekat.entity.MjerneJedinice
 interface MjerneJediniceDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(mjerneJedinice: MjerneJedinice)
+    fun insert(mjerneJedinice: MjerneJedinice)
 
     @Query("SELECT * FROM mjerne_jedinice")
     fun getAll() : List<MjerneJedinice>

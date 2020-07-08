@@ -18,7 +18,7 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>) : RecyclerView.Adapte
         viewType: Int
     ): KategorijeViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.kategorije_element, parent, false)
         return KategorijeViewHolder(view)
     }
 

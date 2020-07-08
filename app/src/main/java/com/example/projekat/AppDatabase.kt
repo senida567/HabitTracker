@@ -1,13 +1,13 @@
 package com.example.projekat
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.projekat.DAO.*
 import com.example.projekat.entity.*
 import com.example.projekat.service.*
+
 
 @Database(entities = [Inkrementalne::class,
                         Kategorije::class,
@@ -122,19 +122,10 @@ abstract class AppDatabase : RoomDatabase() {
         this.vremenskeService = vremenskeService
     }
 
-    open fun getKategorijeService(): KategorijeService? {
-        return kategorijeService
-    }
-
-    open fun getInkrementalneService(): InkrementalneService? {
-        return inkrementalneService
-    }
-
-    open fun getKolicinskeService(): KolicinskeService? {
-        return kolicinskeService
-    }
-
-    open fun getVremenskeService(): VremenskeService? {
-        return vremenskeService
-    }
+    open fun getKategorijeService(): KategorijeService? { return kategorijeService }
+    open fun getOsobineService() : OsobineService? { return osobineService }
+    open fun getKolicinskeService() : KolicinskeService? { return kolicinskeService }
+    open fun getVremenskeService() : VremenskeService? { return vremenskeService }
+    open fun getInkrementalneService() : InkrementalneService? {return inkrementalneService }
+    open fun getMjerneJediniceService() : MjerneJediniceService? { return mjerneJediniceService }
 }

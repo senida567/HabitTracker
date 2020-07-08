@@ -12,11 +12,11 @@ class KolicinskeService {
     constructor(kolicinskeDAO: KolicinskeDAO?) { this.kolicinskeDAO = kolicinskeDAO }
 
     fun getAll(): List<Kolicinske?>? { return kolicinskeDAO?.getAll() }
-    private suspend fun saveKolicinske(kolicinske: Kolicinske) { kolicinskeDAO?.insert(kolicinske) }
+    private fun saveKolicinske(kolicinske: Kolicinske) { kolicinskeDAO?.insert(kolicinske) }
 
     private fun updateKolicinske(kolicinske: Kolicinske) { kolicinskeDAO?.update(kolicinske) }
 
-    suspend fun saveOrUpdate(kolicinske: Kolicinske) {
+    fun saveOrUpdate(kolicinske: Kolicinske) {
         try {
             saveKolicinske(kolicinske)
         } catch (e: Exception) {

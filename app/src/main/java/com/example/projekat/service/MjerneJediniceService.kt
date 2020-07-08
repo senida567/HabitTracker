@@ -12,11 +12,11 @@ class MjerneJediniceService {
     constructor(mjerneJediniceDAO: MjerneJediniceDAO?) { this.mjerneJediniceDAO = mjerneJediniceDAO }
 
     fun getAll(): List<MjerneJedinice?>? { return mjerneJediniceDAO?.getAll() }
-    private suspend fun saveMjerneJedinice(mjerneJedinice: MjerneJedinice) { mjerneJediniceDAO?.insert(mjerneJedinice) }
+    private fun saveMjerneJedinice(mjerneJedinice: MjerneJedinice) { mjerneJediniceDAO?.insert(mjerneJedinice) }
 
     private fun updateMjerneJedinice(mjerneJedinice: MjerneJedinice) { mjerneJediniceDAO?.update(mjerneJedinice) }
 
-    suspend fun saveOrUpdate(mjerneJedinice: MjerneJedinice) {
+    fun saveOrUpdate(mjerneJedinice: MjerneJedinice) {
         try {
             saveMjerneJedinice(mjerneJedinice)
         } catch (e: Exception) {

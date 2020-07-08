@@ -10,11 +10,11 @@ class OsobineService {
     constructor(osobineDAO: OsobineDAO?) { this.osobineDAO = osobineDAO }
 
     fun getAll(): List<Osobine?>? { return osobineDAO?.getAll() }
-    private suspend fun saveOsobine(osobine: Osobine) { osobineDAO?.insert(osobine) }
+    private fun saveOsobine(osobine: Osobine) { osobineDAO?.insert(osobine) }
 
     private fun updateOsobine(osobine: Osobine) { osobineDAO?.update(osobine) }
 
-    suspend fun saveOrUpdate(osobine: Osobine) {
+    fun saveOrUpdate(osobine: Osobine) {
         try {
             saveOsobine(osobine)
         } catch (e: Exception) {

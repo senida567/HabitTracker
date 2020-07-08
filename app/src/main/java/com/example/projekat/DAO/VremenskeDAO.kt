@@ -8,7 +8,7 @@ import com.example.projekat.entity.Vremenske
 interface VremenskeDAO {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(vremenske: Vremenske)
+    fun insert(vremenske: Vremenske)
 
     @Query("SELECT * FROM vremenske")
     fun getAll() : List<Vremenske>

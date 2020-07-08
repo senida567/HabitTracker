@@ -10,11 +10,11 @@ class VremenskeService {
     constructor(vremenskeDAO: VremenskeDAO?) { this.vremenskeDAO = vremenskeDAO }
 
     fun getAll(): List<Vremenske?>? { return vremenskeDAO?.getAll() }
-    private suspend fun saveVremenske(vremenske: Vremenske) { vremenskeDAO?.insert(vremenske) }
+    private fun saveVremenske(vremenske: Vremenske) { vremenskeDAO?.insert(vremenske) }
 
     private fun updateVremenske(vremenske: Vremenske) { vremenskeDAO?.update(vremenske) }
 
-    suspend fun saveOrUpdate(vremenske: Vremenske) {
+    fun saveOrUpdate(vremenske: Vremenske) {
         try {
             saveVremenske(vremenske)
         } catch (e: Exception) {

@@ -50,7 +50,7 @@ class PocetnaFragment : Fragment() {
     ): View? {
         val view : View = inflater.inflate(R.layout.pocetna_fragment, container, false)
 
-        dugmePlus = view.findViewById(R.id.plus_btn)
+/*        dugmePlus = view.findViewById(R.id.plus_btn)
         dugmeMinus = view.findViewById(R.id.minus_btn)
         dugmeUnos = view.findViewById(R.id.unos_btn)
         dugmeUkloni = view.findViewById(R.id.ukloni_aktivnost)
@@ -74,7 +74,7 @@ class PocetnaFragment : Fragment() {
 
         fabPocetna.setOnClickListener {
             dodajAktivnost(view)
-        }
+        }*/
 
         return view
     }
@@ -84,7 +84,7 @@ class PocetnaFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(PocetnaViewModel::class.java)
         // TODO: Use the ViewModel
 
-        setUpMyRecyclerView()
+        //setUpMyRecyclerView()
     }
 
     private fun povecajInkrement(view: View) {
@@ -121,11 +121,11 @@ class PocetnaFragment : Fragment() {
 
             val aktivnost_2 : Kolicinske =
                 Kolicinske(0, "Kalorije", 1400, 2, 1)
-            appDatabase!!.getKolicinskeService().saveOrUpdate(aktivnost_2)
+            appDatabase!!.getKolicinskeService()?.saveOrUpdate(aktivnost_2)
 
             val aktivnost_3 : Vremenske =
                 Vremenske(0, "Trčanje", "start", "stop", 3)
-            appDatabase!!.getVremenskeService().saveOrUpdate(aktivnost_3)
+            appDatabase!!.getVremenskeService()?.saveOrUpdate(aktivnost_3)
         }
 
         inkrementalneList = appDatabase!!.getInkrementalneService()?.getAll() as List<Inkrementalne>

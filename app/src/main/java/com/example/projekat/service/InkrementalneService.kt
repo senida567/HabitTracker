@@ -11,11 +11,11 @@ class InkrementalneService {
 
     fun getAll(): List<Inkrementalne?>? { return inkrementalneDAO?.getAll() }
 
-    private suspend fun saveInkrementalne(inkrementalne: Inkrementalne) { inkrementalneDAO?.insert(inkrementalne) }
+    private fun saveInkrementalne(inkrementalne: Inkrementalne) { inkrementalneDAO?.insert(inkrementalne) }
 
     private fun updateInkrementalne(inkrementalne: Inkrementalne) { inkrementalneDAO?.update(inkrementalne) }
 
-    suspend fun saveOrUpdate(inkrementalne: Inkrementalne) {
+    fun saveOrUpdate(inkrementalne: Inkrementalne) {
         try {
             saveInkrementalne(inkrementalne)
         } catch (e: Exception) {

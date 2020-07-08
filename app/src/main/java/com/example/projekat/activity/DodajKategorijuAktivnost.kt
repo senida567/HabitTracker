@@ -25,7 +25,7 @@ class DodajKategorijuAktivnost : AppCompatActivity() {
 
         var naziv: EditText = findViewById(R.id.editText1)
         var osobine : EditText = findViewById(R.id.editText2)
-        var k = Kategorije(0, naziv.text.toString(), 2, osobine.text.toString().toBoolean())
+        var k = Kategorije(0, naziv.text.toString(), 0, osobine.text.toString().toBoolean())
         GlavnaAktivnost.appDatabase?.getKategorijeService()?.saveOrUpdate(k)
     }
 
