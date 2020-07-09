@@ -17,6 +17,8 @@ import com.example.projekat.AppDatabase
 import com.example.projekat.R
 import com.example.projekat.adapter.KategorijeAdapter
 import com.example.projekat.entity.Kategorije
+import com.example.projekat.entity.Osobine
+import com.example.projekat.entity.Vremenske
 import com.example.projekat.ui.achievements.PostignucaFragment
 import com.example.projekat.ui.categories.DodajKategorijuFragment
 import com.example.projekat.ui.categories.KategorijeFragment
@@ -175,6 +177,14 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
             appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija)
             appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija2)
         }
+        if(appDatabase?.getVremenskeService() == null) {
+            val vrem = Vremenske(1, "Trčanje", "6:00", "7:00", 1)
+            appDatabase?.getVremenskeService()?.saveOrUpdate(vrem)
+        }
+        if(appDatabase?.getOsobineService() == null) {
+            val osob = Osobine(1,"Opis", 1)
+            appDatabase?.getOsobineService()?.saveOrUpdate(osob)
+        }
         kategorijeList = appDatabase?.getKategorijeService()?.getAll()!!
     }
 
@@ -189,5 +199,6 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
             //TO_DO
         }
     }
+
 
 }

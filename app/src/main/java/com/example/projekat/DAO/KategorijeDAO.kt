@@ -20,4 +20,7 @@ interface KategorijeDAO {
 
     @Update
     fun update(kategorije: Kategorije?)
+
+    @Query("SELECT id FROM kategorije ORDER BY id DESC LIMIT 1")
+    fun getLastId() : Int
 }

@@ -1,5 +1,6 @@
 package com.example.projekat.ui.categories
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,10 +19,11 @@ import com.example.projekat.ui.categories.KategorijeFragment.Companion.newInstan
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.kategorije_fragment.*
 
-class KategorijeFragment : Fragment() {
+class KategorijeFragment : Fragment(), KategorijeAdapter.OnElementListener {
 
     private lateinit var kategorijeList : List<Kategorije>
     private lateinit var btn : FloatingActionButton
+    private lateinit var btnMenu : Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -45,22 +47,39 @@ class KategorijeFragment : Fragment() {
             // RecyclerView behavior
             layoutManager = LinearLayoutManager(activity)
             // set the custom adapter to the RecyclerView
-            adapter = KategorijeAdapter(kategorijeList)
+            adapter = KategorijeAdapter(kategorijeList, this@KategorijeFragment)
         }
 
         btn = view.findViewById(R.id.floatingActionButton_kategorije)
         btn.setOnClickListener {
-
-            var fr = getFragmentManager()?.beginTransaction()
-            fr?.replace(R.id.fragment_container, DodajKategorijuFragment())
-            fr?.addToBackStack(null)
-            fr?.commit()
+            dodajKategoriju()
         }
+
+//        btnMenu = view.findViewById(R.id.otvoriKategoriju)
+    //    btnMenu.setOnClickListener {
+      //      otvoriMenu()
+       // }
 
     }
 
     companion object {
         fun newInstance(): KategorijeFragment = KategorijeFragment()
+    }
+
+    open fun dodajKategoriju() {
+        var fr = getFragmentManager()?.beginTransaction()
+        fr?.replace(R.id.fragment_container, DodajKategorijuFragment())
+        fr?.addToBackStack(null)
+        fr?.commit()
+    }
+
+    open fun otvoriMenu() {
+
+    }
+
+    override fun onElementClick(position: Int) {
+        var kat = kategorijeList.get(position).naziv
+        Log.d(TAG, "onElementClick: " + kat)
     }
 
 
