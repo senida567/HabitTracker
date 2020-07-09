@@ -38,7 +38,6 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     private lateinit var bottomNavView: BottomNavigationView
 
     private lateinit var kategorijeList: List<Kategorije>
-    private lateinit var btn : FloatingActionButton
 
     companion object {
         var appDatabase: AppDatabase? = null
@@ -66,11 +65,6 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         loadFragment(PocetnaFragment());
         navigation_view.setNavigationItemSelectedListener(this)
-
-        btn = findViewById(R.id.floatingActionButton)
-        btn.setOnClickListener {
-            floatingActionButtonClicked()
-        }
 
     }
 

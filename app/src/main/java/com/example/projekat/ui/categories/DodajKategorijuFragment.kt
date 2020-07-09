@@ -5,19 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.projekat.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DodajKategorijuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DodajKategorijuFragment : Fragment() {
+
+    private lateinit var btn : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +27,13 @@ class DodajKategorijuFragment : Fragment() {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // RecyclerView node initialized here
+
+        btn = view.findViewById(R.id.novaKategorija)
+        btn.setOnClickListener {
+
+
+
+        }
+
     }
 }
