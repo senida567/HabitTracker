@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projekat.R
+import com.example.projekat.activity.GlavnaAktivnost
 import com.example.projekat.entity.Kategorije
+import com.example.projekat.entity.Osobine
 
 
 class KategorijeAdapter(kategorijeLista: List<Kategorije>, mOnElementListener: OnElementListener) : RecyclerView.Adapter<KategorijeAdapter.KategorijeViewHolder>() {
@@ -28,9 +30,18 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>, mOnElementListener: O
     override fun onBindViewHolder(holder: KategorijeViewHolder, position: Int) {
         val kategorije : Kategorije = kategorijeLista.get(position)
         holder.naziv.setText(kategorije.naziv)
-        //holder.osobina.setText(kategorije.osobina.toString()) //zasad je osobina boolean
-        //i sve što korisnik treba vidjeti iz tebele kategorije
 
+        val osob : List<Osobine>? = GlavnaAktivnost.appDatabase?.getOsobineDao()?.getAll()
+        var tekst = ""
+        if(osob != null) {
+            for(o : Osobine in osob) {
+                if(o.id_kategorije == kategorije.id) {
+                    tekst += " ! "
+                    tekst += o.opis
+                }
+            }
+        }
+        holder.osobina.setText(tekst)
     }
 
     override fun getItemCount(): Int {
@@ -39,7 +50,8 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>, mOnElementListener: O
 
     class KategorijeViewHolder(itemView: View, onElementListener: OnElementListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         var naziv: TextView
-        lateinit var mOnElementListener: OnElementListener
+        var osobina: TextView
+        var mOnElementListener: OnElementListener
 
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: $adapterPosition")
@@ -48,6 +60,7 @@ class KategorijeAdapter(kategorijeLista: List<Kategorije>, mOnElementListener: O
 
         init {
             naziv = itemView.findViewById(R.id.naziv)
+            osobina = itemView.findViewById(R.id.osobina)
             mOnElementListener = onElementListener
             itemView.setOnClickListener(this)
         }

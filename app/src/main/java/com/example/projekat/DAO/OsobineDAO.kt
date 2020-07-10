@@ -23,6 +23,12 @@ interface OsobineDAO {
     @Query("DELETE FROM osobine WHERE id = :id_O")
     suspend fun deleteId(id_O : Int)
 
+    @Query("DELETE FROM osobine WHERE id_kategorije = :id_K")
+    fun deleteKategoriju(id_K : Int)
+
+    @Query("SELECT id FROM kategorije ORDER BY id DESC LIMIT 1")
+    fun getLastId() : Int
+
     @Update
     fun update(osobine: Osobine?)
 }

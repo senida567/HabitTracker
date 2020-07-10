@@ -8,14 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projekat.R
 import com.example.projekat.activity.GlavnaAktivnost
 import com.example.projekat.adapter.KategorijeAdapter
 import com.example.projekat.entity.Kategorije
-import com.example.projekat.ui.categories.KategorijeFragment.Companion.newInstance
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.kategorije_fragment.*
 
@@ -23,7 +20,7 @@ class KategorijeFragment : Fragment(), KategorijeAdapter.OnElementListener {
 
     private lateinit var kategorijeList : List<Kategorije>
     private lateinit var btn : FloatingActionButton
-    private lateinit var btnMenu : Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -55,11 +52,6 @@ class KategorijeFragment : Fragment(), KategorijeAdapter.OnElementListener {
             dodajKategoriju()
         }
 
-//        btnMenu = view.findViewById(R.id.otvoriKategoriju)
-    //    btnMenu.setOnClickListener {
-      //      otvoriMenu()
-       // }
-
     }
 
     companion object {
@@ -73,14 +65,11 @@ class KategorijeFragment : Fragment(), KategorijeAdapter.OnElementListener {
         fr?.commit()
     }
 
-    open fun otvoriMenu() {
-
-    }
-
     override fun onElementClick(position: Int) {
-        var kat = kategorijeList.get(position).naziv
-        Log.d(TAG, "onElementClick: " + kat)
+        var fr = getFragmentManager()?.beginTransaction()
+        fr?.replace(R.id.fragment_container, AktivnostiFragment(kategorijeList.get(position)))
+        fr?.addToBackStack(null)
+        fr?.commit()
     }
-
 
 }

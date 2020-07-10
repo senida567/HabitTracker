@@ -50,7 +50,7 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar)) // postavljanje toolbara
-        setMyDatabase(java.lang.String.valueOf(R.string.kategorije_service))
+        setMyDatabase(java.lang.String.valueOf(R.string.all_services))
         setUpMyDatabaseContext()
 
         drawer = findViewById(R.id.drawer_layout)
@@ -171,20 +171,23 @@ class GlavnaAktivnost : AppCompatActivity(), NavigationView.OnNavigationItemSele
     }
 
     private fun setUpMyDatabaseContext() {
-        if(appDatabase?.getKategorijeService() == null) {
+        if(appDatabase?.getKategorijeService()?.getAll()?.isEmpty().toString() == "true") {
             val kategorija = Kategorije(1, "Dnevna aktivnost",0,true)
             val kategorija2 = Kategorije(2, "Školske aktivnosti", 0,true)
             appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija)
             appDatabase?.getKategorijeService()?.saveOrUpdate(kategorija2)
         }
-        if(appDatabase?.getVremenskeService() == null) {
+        if(appDatabase?.getVremenskeService()?.getAll()?.isEmpty().toString() == "true") {
             val vrem = Vremenske(1, "Trčanje", "6:00", "7:00", 1)
             appDatabase?.getVremenskeService()?.saveOrUpdate(vrem)
         }
-        if(appDatabase?.getOsobineService() == null) {
+        if(appDatabase?.getOsobineService()?.getAll()?.isEmpty().toString() == "true") {
             val osob = Osobine(1,"Opis", 1)
             appDatabase?.getOsobineService()?.saveOrUpdate(osob)
         }
+        Log.d("TAG",
+            appDatabase?.getOsobineService()?.getAll()?.isEmpty().toString()
+        )
         kategorijeList = appDatabase?.getKategorijeService()?.getAll()!!
     }
 

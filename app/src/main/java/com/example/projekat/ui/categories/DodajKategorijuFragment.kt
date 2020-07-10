@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.projekat.R
 import com.example.projekat.activity.GlavnaAktivnost
 import com.example.projekat.adapter.KategorijeAdapter
 import com.example.projekat.entity.Kategorije
+import com.example.projekat.entity.Osobine
 import com.example.projekat.service.KategorijeService
 import kotlinx.android.synthetic.main.fragment_dodaj_kategoriju.*
 
@@ -40,9 +42,10 @@ class DodajKategorijuFragment : Fragment() {
         btn.setOnClickListener {
 
             var naziv = view.findViewById<EditText>(R.id.naziv).getText().toString()
+            var osob = view.findViewById<EditText>(R.id.osobina).getText().toString()
             if(TextUtils.isEmpty(naziv)) {
 
-                Toast.makeText(requireActivity(), "plz enter your name ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireActivity(), "Unesite naziv kategorije!", Toast.LENGTH_LONG).show();
                 return@setOnClickListener;
 
             } else {
@@ -52,8 +55,17 @@ class DodajKategorijuFragment : Fragment() {
                 var lastId: Int
                 if (broj != null) lastId = broj + 1
                 else lastId = 1
-                var novaKategorija = Kategorije(lastId, naziv, 2, true)
+
+                var novaKategorija = Kategorije(lastId, naziv, 2, osob != "")
                 db?.getKategorijeService()?.saveOrUpdate(novaKategorija)
+
+                if(osob != "") {
+                    broj = db?.getOsobineDao()?.getLastId()
+                    if (broj != null) lastId = broj + 1
+                    else lastId = 1
+                    db?.getOsobineService()?.saveOrUpdate(Osobine(lastId, osob, novaKategorija.id))
+                }
+
                 var fr = getFragmentManager()?.beginTransaction()
                 fr?.replace(R.id.fragment_container, KategorijeFragment())
                 fr?.addToBackStack(null)

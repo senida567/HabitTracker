@@ -22,6 +22,9 @@ interface VremenskeDAO {
     @Query("DELETE FROM vremenske WHERE id = :id_V")
     suspend fun deleteId(id_V : Int)
 
+    @Query("DELETE FROM vremenske WHERE id_kategorije = :id_K")
+    fun deleteKategoriju(id_K : Int)
+
     @Update
     fun update(vremenske: Vremenske?)
 

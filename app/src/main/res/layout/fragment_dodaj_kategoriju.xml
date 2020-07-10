@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         />
 
     <TextView
@@ -30,7 +30,6 @@
         app:layout_constraintTop_toBottomOf="@+id/slika"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="15dp"
         />
 
     <TextView
@@ -40,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Naziv"
         android:textSize="20dp"
         android:textAlignment="center"
@@ -54,8 +53,31 @@
         app:layout_constraintTop_toBottomOf="@+id/textview2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
         />
+
+    <TextView
+        android:id="@+id/textview3"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        app:layout_constraintTop_toBottomOf="@id/naziv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="Osobina"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <EditText
+        android:id="@+id/osobina"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/textview3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
     <Button
         android:id="@+id/novaKategorija"
@@ -64,7 +86,7 @@
         android:clickable="true"
         android:focusable="true"
         android:text="DODAJ"
-        app:layout_constraintTop_toBottomOf="@id/naziv"
+        app:layout_constraintTop_toBottomOf="@id/osobina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp"

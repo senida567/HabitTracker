@@ -22,6 +22,9 @@ interface InkrementalneDAO {
     @Query("DELETE FROM inkrementalne WHERE id = :id_I")
     suspend fun deleteId(id_I : Int)
 
+    @Query("DELETE FROM inkrementalne WHERE id_kategorije = :id_K")
+    fun deleteKategoriju(id_K : Int)
+
     @Update
     fun update(inkrementalne: Inkrementalne?)
 }

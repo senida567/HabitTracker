@@ -22,6 +22,9 @@ interface KolicinskeDAO {
     @Query("DELETE FROM kolicinske WHERE id = :id_K")
     suspend fun deleteId(id_K : Int)
 
+    @Query("DELETE FROM kolicinske WHERE id_kategorije = :id_K")
+    fun deleteKategoriju(id_K : Int)
+
     @Update
     fun update(kolicinske: Kolicinske?)
 }

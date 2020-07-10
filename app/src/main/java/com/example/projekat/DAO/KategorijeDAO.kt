@@ -16,7 +16,7 @@ interface KategorijeDAO {
     suspend fun deleteAll()
 
     @Query("DELETE FROM kategorije WHERE id = :id_K")
-    suspend fun deleteId(id_K : Int)
+    fun deleteId(id_K : Int)
 
     @Update
     fun update(kategorije: Kategorije?)
